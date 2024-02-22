@@ -1,1 +1,65 @@
-<p>users-admin works!</p>
+<p-table
+    #dt1
+    dataKey="id"
+    [value]="users"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [rows]="25"
+    [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    [loading]="loading"
+    [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [globalFilterFields]="['id', 'userName', 'firstName', 'lastName', 'email']"
+    selectionMode="single"
+    [columns]="cols"
+>
+    <ng-template pTemplate="caption">
+        <div class="flex">
+            <button
+                pButton
+                label="Clear"
+                class="p-button-outlined"
+                icon="pi pi-filter-slash"
+                (click)="clear(dt1)"
+            ></button>
+            <span class="p-input-icon-left ml-auto">
+                <i class="pi pi-search"></i>
+                <input
+                    pInputText
+                    type="text"
+                    (input)="dt1.filterGlobal($event.target.value, 'contains')"
+                    placeholder="Search keyword"
+                />
+            </span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th *ngFor="let col of cols" [pSortableColumn]="col.field">
+                {{ col.header }} <p-sortIcon [field]="col.field"></p-sortIcon>
+            </th>
+        </tr>
+        <tr>
+            <th *ngFor="let col of cols">
+                <p-columnFilter
+                    type="text"
+                    [field]="col.field"
+                ></p-columnFilter>
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-user>
+        <tr (click)="handleRowSelect(rowData)">
+            <td>{{ user.id }}</td>
+            <td>{{ user.userName }}</td>
+            <td>{{ user.firstName }}</td>
+            <td>{{ user.lastName }}</td>
+            <td>{{ user.email }}</td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="7">No customers found.</td>
+        </tr>
+    </ng-template>
+</p-table>
