@@ -1,1 +1,79 @@
-<p>users-admin works!</p>
+<p-table
+    #dt1
+    dataKey="id"
+    [value]="users"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [rows]="25"
+    [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    [loading]="loading"
+    [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [globalFilterFields]="['id', 'userName', 'firstName', 'lastName', 'email']"
+>
+    <ng-template pTemplate="caption">
+        <div class="flex">
+            <button
+                pButton
+                label="Clear"
+                class="p-button-outlined"
+                icon="pi pi-filter-slash"
+                (click)="clear(dt1)"
+            ></button>
+            <span class="p-input-icon-left ml-auto">
+                <i class="pi pi-search"></i>
+                <input
+                    pInputText
+                    type="text"
+                    (input)="dt1.filterGlobal($event.target.value, 'contains')"
+                    placeholder="Search keyword"
+                />
+            </span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="id" style="width: 20%">
+                Id <p-sortIcon field="id"></p-sortIcon>
+            </th>
+            <th pSortableColumn="userName" style="width: 20%">
+                User Name <p-sortIcon field="userName"></p-sortIcon>
+            </th>
+            <th pSortableColumn="firstName" style="width: 20%">
+                First Name <p-sortIcon field="firstName"></p-sortIcon>
+            </th>
+            <th pSortableColumn="lastName" style="width: 20%">
+                Last Name <p-sortIcon field="lastName"></p-sortIcon>
+            </th>
+            <th pSortableColumn="email" style="width: 20%">
+                Email <p-sortIcon field="email"></p-sortIcon>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                <p-columnFilter type="text" field="id"></p-columnFilter>
+            </th>
+            <th>
+                <p-columnFilter type="text" field="userName"></p-columnFilter>
+            </th>
+            <th>
+                <p-columnFilter type="text" field="firstName"></p-columnFilter>
+            </th>
+            <th>
+                <p-columnFilter type="text" field="lastName"></p-columnFilter>
+            </th>
+            <th>
+                <p-columnFilter type="text" field="email"></p-columnFilter>
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.userName }}</td>
+            <td>{{ user.firstName }}</td>
+            <td>{{ user.lastName }}</td>
+            <td>{{ user.email }}</td>
+        </tr>
+    </ng-template>
+</p-table>
