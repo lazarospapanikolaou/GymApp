@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 @Injectable({
     providedIn: 'root',
 })
-export class UsersAdminService {
+export class UserService {
     users: UsersDto[] = [
         {
             id: 1,
@@ -32,10 +32,9 @@ export class UsersAdminService {
             image: 'https://images.unsplash.com/photo-1676195470090-7c90bf539b3b?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         },
     ];
-
     constructor() {}
 
-    getAdminUsers(): Observable<UsersDto[]> {
-        return of(this.users);
+    getUser(id: number): Observable<UsersDto> {
+        return of(this.users.find((user) => user.id == id));
     }
 }

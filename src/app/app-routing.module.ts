@@ -6,6 +6,7 @@ import { UsersAdminComponent } from './components/users-admin/users-admin.compon
 import { ProgramsAdminComponent } from './components/programs-admin/programs-admin.component';
 import { PaymentsAdminComponent } from './components/payments-admin/payments-admin.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { UserComponent } from './components/user/user.component';
 
 @NgModule({
     imports: [
@@ -26,6 +27,7 @@ import { SettingsComponent } from './components/settings/settings.component';
                         { path: 'programs', component: ProgramsAdminComponent },
                         { path: 'payments', component: PaymentsAdminComponent },
                         { path: 'settings', component: SettingsComponent },
+                        { path: 'users/user', component: UserComponent },
                         {
                             path: 'uikit',
                             loadChildren: () =>

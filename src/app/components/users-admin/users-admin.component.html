@@ -12,6 +12,7 @@
     [globalFilterFields]="['id', 'userName', 'firstName', 'lastName', 'email']"
     selectionMode="single"
     [columns]="cols"
+    class="users-table"
 >
     <ng-template pTemplate="caption">
         <div class="flex">
@@ -50,8 +51,24 @@
     </ng-template>
     <ng-template pTemplate="body" let-rowData let-user>
         <tr (click)="handleRowSelect(rowData)">
-            <td>{{ user.id }}</td>
-            <td>{{ user.userName }}</td>
+            <td class="flex flex-wrap gap-2">
+                <span>
+                    <img
+                        *ngIf="user.image || user.image != ''"
+                        style="height: 25px"
+                        alt="Avatar"
+                        [src]="user.image"
+                    />
+                    <span
+                        *ngIf="!user.image || user.image == ''"
+                        style="height: 25px"
+                        class="pi pi-user"
+                    ></span>
+                </span>
+                <span>
+                    {{ user.userName }}
+                </span>
+            </td>
             <td>{{ user.firstName }}</td>
             <td>{{ user.lastName }}</td>
             <td>{{ user.email }}</td>

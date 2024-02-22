@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersAdminService } from '../../service/users-admin.service';
-import { UsersDto } from './dto/users.dto';
+import { UsersDto } from '../../dto/users.dto';
 import { Table, TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-users-admin',
@@ -18,11 +19,14 @@ export class UsersAdminComponent implements OnInit {
     loading: boolean = true;
     cols!: any[];
 
-    constructor(private users_admin_service: UsersAdminService) {}
+    constructor(
+        private users_admin_service: UsersAdminService,
+        private router: Router
+    ) {}
 
     ngOnInit(): void {
         this.cols = [
-            { field: 'id', header: 'ID' },
+            // { field: 'id', header: 'ID' },
             { field: 'userName', header: 'User Name' },
             { field: 'firstName', header: 'First Name' },
             { field: 'lastName', header: 'Last Name' },
@@ -44,5 +48,9 @@ export class UsersAdminComponent implements OnInit {
 
     handleRowSelect(user: UsersDto) {
         console.log(user);
+        const queryParams = {
+            id: user.id,
+        };
+        this.router.navigate(['/users/user/'], { queryParams });
     }
 }
