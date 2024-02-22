@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersAdminService } from '../../service/users-admin.service';
 import { UsersDto } from '../../dto/users.dto';
 import { Table, TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { UsersAdminService } from 'src/app/service/users-admin.service';
 
 @Component({
     selector: 'app-users-admin',
@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
     imports: [CommonModule, TableModule, ButtonModule, InputTextModule],
     templateUrl: './users-admin.component.html',
     styleUrl: './users-admin.component.scss',
+    providers: [UsersAdminService],
 })
 export class UsersAdminComponent implements OnInit {
     users: UsersDto[] = [];
@@ -26,7 +27,6 @@ export class UsersAdminComponent implements OnInit {
 
     ngOnInit(): void {
         this.cols = [
-            // { field: 'id', header: 'ID' },
             { field: 'userName', header: 'User Name' },
             { field: 'firstName', header: 'First Name' },
             { field: 'lastName', header: 'Last Name' },
@@ -47,7 +47,6 @@ export class UsersAdminComponent implements OnInit {
     }
 
     handleRowSelect(user: UsersDto) {
-        console.log(user);
         const queryParams = {
             id: user.id,
         };
