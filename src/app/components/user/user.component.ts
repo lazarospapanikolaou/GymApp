@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/service/user-service';
 import { ActivatedRoute } from '@angular/router';
 import { UsersDto } from '../../dto/users.dto';
+import { CardModule } from 'primeng/card';
 
 @Component({
     selector: 'app-user',
     standalone: true,
-    imports: [],
+    imports: [CardModule],
     templateUrl: './user.component.html',
     styleUrl: './user.component.scss',
 })
