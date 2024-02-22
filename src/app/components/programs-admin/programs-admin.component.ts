@@ -11,4 +11,8 @@ import { CardModule } from 'primeng/card';
 })
 export class ProgramsAdminComponent {
 
+  load() {
+    console.log("Success")
+  }
+
 }
