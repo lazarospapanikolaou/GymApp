@@ -1,11 +1,11 @@
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { NotfoundComponent } from './demo/components/notfound/notfound.component';
+import { NotfoundComponent } from './components/notfound/notfound.component';
 import { AppLayoutComponent } from './layout/app.layout.component';
-import { UsersAdminComponent } from './demo/components/users-admin/users-admin.component';
-import { ProgramsAdminComponent } from './demo/components/programs-admin/programs-admin.component';
-import { PaymentsAdminComponent } from './demo/components/payments-admin/payments-admin.component';
-import { SettingsComponent } from './demo/components/settings/settings.component';
+import { UsersAdminComponent } from './components/users-admin/users-admin.component';
+import { ProgramsAdminComponent } from './components/programs-admin/programs-admin.component';
+import { PaymentsAdminComponent } from './components/payments-admin/payments-admin.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 @NgModule({
     imports: [
@@ -19,7 +19,7 @@ import { SettingsComponent } from './demo/components/settings/settings.component
                             path: '',
                             loadChildren: () =>
                                 import(
-                                    './demo/components/dashboard/dashboard.module'
+                                    './components/dashboard/dashboard.module'
                                 ).then((m) => m.DashboardModule),
                         },
                         { path: 'users', component: UsersAdminComponent },
@@ -29,51 +29,51 @@ import { SettingsComponent } from './demo/components/settings/settings.component
                         {
                             path: 'uikit',
                             loadChildren: () =>
-                                import(
-                                    './demo/components/uikit/uikit.module'
-                                ).then((m) => m.UIkitModule),
+                                import('./components/uikit/uikit.module').then(
+                                    (m) => m.UIkitModule
+                                ),
                         },
                         {
                             path: 'utilities',
                             loadChildren: () =>
                                 import(
-                                    './demo/components/utilities/utilities.module'
+                                    './components/utilities/utilities.module'
                                 ).then((m) => m.UtilitiesModule),
                         },
                         {
                             path: 'documentation',
                             loadChildren: () =>
                                 import(
-                                    './demo/components/documentation/documentation.module'
+                                    './components/documentation/documentation.module'
                                 ).then((m) => m.DocumentationModule),
                         },
                         {
                             path: 'blocks',
                             loadChildren: () =>
                                 import(
-                                    './demo/components/primeblocks/primeblocks.module'
+                                    './components/primeblocks/primeblocks.module'
                                 ).then((m) => m.PrimeBlocksModule),
                         },
                         {
                             path: 'pages',
                             loadChildren: () =>
-                                import(
-                                    './demo/components/pages/pages.module'
-                                ).then((m) => m.PagesModule),
+                                import('./components/pages/pages.module').then(
+                                    (m) => m.PagesModule
+                                ),
                         },
                     ],
                 },
                 {
                     path: 'auth',
                     loadChildren: () =>
-                        import('./demo/components/auth/auth.module').then(
+                        import('./components/auth/auth.module').then(
                             (m) => m.AuthModule
                         ),
                 },
                 {
                     path: 'landing',
                     loadChildren: () =>
-                        import('./demo/components/landing/landing.module').then(
+                        import('./components/landing/landing.module').then(
                             (m) => m.LandingModule
                         ),
                 },
