@@ -53,20 +53,10 @@
         <tr (click)="handleRowSelect(rowData)">
             <td class="flex flex-wrap align-items-center gap-3">
                 <span>
-                    <img
-                        style="width: 25px; height: 25px"
-                        class="vertical-align-middle border-circle"
-                        *ngIf="user.image || user.image != ''"
-                        alt="Avatar"
-                        [src]="user.image"
-                    />
-                    <i
-                        style="font-size: 25px"
-                        class="vertical-align-middle border-circle"
-                        ngClass="border-circle"
-                        *ngIf="!user.image || user.image == ''"
-                        class="pi pi-user"
-                    ></i>
+                    <p-avatar *ngIf="user.image || user.image != ''"
+                    alt="Avatar"
+                    [image]="user.image" styleClass="mr-2" size="large" shape="circle"></p-avatar>
+                    <p-avatar *ngIf="!user.image || user.image == ''" shape="circle" icon="pi pi-user" size="large"></p-avatar>
                 </span>
                 <span>
                     {{ user.userName }}

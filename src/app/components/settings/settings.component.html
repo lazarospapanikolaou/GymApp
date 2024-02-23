@@ -1,8 +1,44 @@
-<label for="theme">Dark Theme</label>
-<p-inputSwitch inputId="theme" [(ngModel)]="checked" (ngModelChange)="themeSwitch($event)"
-></p-inputSwitch>
-<label for="language">Language</label>
+<div class="grid">
+    <div class="col-12 sm:col-6 flex justify-content-center">
+        <img
+            *ngIf="user.image && user.image != ''"
+            alt="User Image"
+            [src]="user.image"
+            style="width: 7.5rem"
+            class="border-circle"
+        />
+        <icon
+            class="pi pi-user border-circle"
+            *ngIf="!user.image && user.image == ''"
+            style="font-size: 7.5rem"
+        />
+    </div>
 
-<p-dropdown [options]="languages" (ngModelChange)="changeLanguage($event)"
- [(ngModel)]="selectedLanguage" optionLabel="name"
- placeholder="Language"></p-dropdown>
+    <div
+        class="col-12 sm:col-6 flex flex-column align-items-center sm:align-items-baseline"
+    >
+        <div class="field grid flex align-items-center justify-content-center">
+            <label class="col-fixed" for="theme">Dark Theme</label>
+            <div class="col">
+                <p-inputSwitch
+                    inputId="theme"
+                    [(ngModel)]="checkedDark"
+                    (ngModelChange)="themeSwitch($event)"
+                ></p-inputSwitch>
+            </div>
+        </div>
+
+        <div class="field grid flex align-items-center justify-content-center">
+            <label class="col-fixed" for="language">Language</label>
+            <div class="col">
+                <p-dropdown
+                    [options]="languages"
+                    (ngModelChange)="changeLanguage($event)"
+                    [(ngModel)]="selectedLanguage"
+                    optionLabel="name"
+                    placeholder="Language"
+                ></p-dropdown>
+            </div>
+        </div>
+    </div>
+</div>
