@@ -1,0 +1,17 @@
+<div class="pageHeader">
+    <div class="headerTitle">User Admin</div>
+</div>
+
+
+<p-tabView size="medium">
+    <p-tabPanel (click)="changeView('user')" [ngClass]="{ active: showAdminUser == true}">
+        <p>Admin User</p>
+    </p-tabPanel>
+    <p-tabPanel (click)="changeView('userProgramHistory')" [ngClass]="{ active: showProgramHistory == true}">
+        <p>Program History</p>
+    </p-tabPanel>
+</p-tabView>
+
+<div class="page-container">
+    <app-user *ngIf="showAdminUser"></app-user>
+</div>

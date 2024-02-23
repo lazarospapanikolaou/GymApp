@@ -1,0 +1,29 @@
+.pageHeader {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+
+    .headerTitle {
+      font-weight: normal;
+      font-size: 1.5rem;
+      font-style: normal;
+      line-height: 1.5rem;
+      color: var(--text-secondary-color);
+      letter-spacing: 0.125rem;
+    }
+
+    .headerSubtitle {
+      font-weight: normal;
+      font-size: 1.1rem;
+      font-style: normal;
+      line-height: 1.1rem;
+      color: var(--text-secondary-color);
+      letter-spacing: 0.125rem;
+    }
+}
+
+.page-container {
+  margin-top: 8px;
+}

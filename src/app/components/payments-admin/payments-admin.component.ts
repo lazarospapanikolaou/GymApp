@@ -23,11 +23,11 @@ export class PaymentsAdminComponent implements OnInit {
     constructor(private payments_service: PaymentsService, private translate: TranslateService) {}
 
     ngOnInit(): void {
-        console.log(this.translate.instant('demo.greeting'));
+        
 
         this.payments_service.getPayments().subscribe((payments) => {
             this.payments = payments;
-            console.log(this.payments);
+        
         });
 
         const documentStyle = getComputedStyle(document.documentElement);

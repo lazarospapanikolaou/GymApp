@@ -49,6 +49,9 @@ export class UsersAdminComponent implements OnInit {
         const queryParams = {
             id: user.id,
         };
-        this.router.navigate(['/users/user/'], { queryParams });
+        // this.router.navigate(['/users/user/'], { queryParams });
+        this.router.navigate(['/users/admin'], { queryParams });
+        
+        
     }
 }

@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 @Component({
     selector: 'app-user',
     standalone: true,
-    imports: [CardModule, TableModule, CommonModule],
+    imports: [CardModule, TableModule, CommonModule, ],
     templateUrl: './user.component.html',
     styleUrl: './user.component.scss',
 })
@@ -40,13 +40,12 @@ export class UserComponent implements OnInit {
             // Access the query parameters here
             this.user_service.getUser(params['id']).subscribe((user) => {
                 this.user = user;
-                console.log(this.user);
+           
             });
         });
 
         this.user_details_service.getUserDetails().subscribe((res: UserDetailDto[]) => {
             this.userDetail = res;
-            console.log(this.userDetail)
             this.loading = false;
         })
     }
