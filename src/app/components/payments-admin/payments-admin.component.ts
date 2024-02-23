@@ -1,5 +1,6 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ChartModule } from 'primeng/chart';
 import { TableModule } from 'primeng/table';
 import { PaymentsDto } from 'src/app/dto/payments.dto';
@@ -8,7 +9,7 @@ import { PaymentsService } from 'src/app/service/payments.service';
 @Component({
     selector: 'app-payments-admin',
     standalone: true,
-    imports: [ChartModule, TableModule, CurrencyPipe],
+    imports: [ChartModule, TableModule, CurrencyPipe, TranslateModule],
     templateUrl: './payments-admin.component.html',
     styleUrl: './payments-admin.component.scss',
 })
@@ -19,9 +20,11 @@ export class PaymentsAdminComponent implements OnInit {
     pieOptions: any;
     payments: PaymentsDto[];
 
-    constructor(private payments_service: PaymentsService) {}
+    constructor(private payments_service: PaymentsService, private translate: TranslateService) {}
 
     ngOnInit(): void {
+        console.log(this.translate.instant('demo.greeting'));
+
         this.payments_service.getPayments().subscribe((payments) => {
             this.payments = payments;
             console.log(this.payments);
