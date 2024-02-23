@@ -1,1 +1,8 @@
-<p>settings works!</p>
+<label for="theme">Dark Theme</label>
+<p-inputSwitch inputId="theme" [(ngModel)]="checked" (ngModelChange)="themeSwitch($event)"
+></p-inputSwitch>
+<label for="language">Language</label>
+
+<p-dropdown [options]="languages" (ngModelChange)="changeLanguage($event)"
+ [(ngModel)]="selectedLanguage" optionLabel="name"
+ placeholder="Language"></p-dropdown>

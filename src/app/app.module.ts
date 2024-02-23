@@ -11,10 +11,23 @@ import { EventService } from './service/event.service';
 import { IconService } from './service/icon.service';
 import { NodeService } from './service/node.service';
 import { PhotoService } from './service/photo.service';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function createTranslateLoader(http: HttpClient) {
+    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
     declarations: [AppComponent, NotfoundComponent],
-    imports: [AppRoutingModule, AppLayoutModule],
+    imports: [AppRoutingModule, AppLayoutModule, TranslateModule.forRoot({
+        loader: {
+            provide: TranslateLoader,
+            useFactory: (createTranslateLoader),
+            deps: [HttpClient]
+        }
+    })],
     providers: [
         { provide: LocationStrategy, useClass: PathLocationStrategy },
         CountryService,
