@@ -1,9 +1,31 @@
-<div class="formgrid grid">
-    <p-card class="field col" [style]="{width: '420px'}">
-        <p class="flex align-items-center justify-content-center">Section one</p>
-    </p-card>
-
-    <p-card class="field col" [style]="{width: '420px'}">
-        <p class="flex align-items-center justify-content-center">Section two</p>
-    </p-card>
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <p-table dataKey="id" [columns]="cols" [value]="userDetail" scrollDirection="both" [scrollable]="true" scrollHeight="250px" styleClass="mt-3" responsiveLayout="scroll">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th *ngFor="let col of cols">
+                            {{ col.header }}
+                        </th>                
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-userDetail>
+                    <tr>
+                        <td>{{ userDetail.firstName }}</td>
+                        <td>{{ userDetail.lastName }}</td>
+                        <td>{{ userDetail.email }}</td>
+                        <td>{{ userDetail.birthDate }}</td>
+                        <td>{{ userDetail.address }}</td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="5">No Details found.</td>
+                    </tr>
+                </ng-template>
+            </p-table>           
+        </div>
+    </div>
 </div>
+
+<div class="page-container"></div>
