@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { DropdownModule } from 'primeng/dropdown';
 import { CommonModule } from '@angular/common';
-import { U } from '@fullcalendar/core/internal-common';
 import { UsersDto } from 'src/app/dto/users.dto';
 import { UserService } from 'src/app/service/user-service';
 
@@ -32,9 +31,21 @@ export class SettingsComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.checkedDark = false; //read from db or localstorage
-        this.selectedLanguage = this.languages[0]; //read from db or localstorage
-        //get current logged in user(with id 0 on this example)
+        this.checkedDark = !localStorage.getItem('theme')
+            ? false
+            : localStorage.getItem('theme') === 'light'
+            ? false
+            : localStorage.getItem('theme') === 'dark'
+            ? true
+            : false; //read from db or localstorage
+        console.log(this.checkedDark);
+        this.selectedLanguage = this.languages.find(
+            (lang) => lang.code == localStorage.getItem('lang')
+        ) || {
+            code: 'en',
+            name: 'English',
+        }; //read from db or localstorage
+        //get current logged in user(with id 2 on this example)
         this.userService.getUser(2).subscribe((user) => {
             this.user = user;
         });
@@ -70,12 +81,15 @@ export class SettingsComponent implements OnInit {
     themeSwitch($event) {
         if (this.checkedDark) {
             this.changeTheme('mdc-dark-indigo', 'dark');
+            localStorage.setItem('theme', 'dark');
         } else {
             this.changeTheme('mdc-light-indigo', 'light');
+            localStorage.setItem('theme', 'light');
         }
     }
 
     changeLanguage($event): void {
         this.translate.use($event.code);
+        localStorage.setItem('lang', $event.code);
     }
 }

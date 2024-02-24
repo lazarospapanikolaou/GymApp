@@ -37,4 +37,12 @@ export class UserService {
     getUser(id: number): Observable<UsersDto> {
         return of(this.users.find((user) => user.id == id));
     }
+
+    isUserLoggedIn(): Observable<boolean> {
+        const loggedIn = localStorage.getItem('auth_token');
+        if (!loggedIn) {
+            return of(false);
+        }
+        return of(true);
+    }
 }
