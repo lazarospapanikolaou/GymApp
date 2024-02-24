@@ -31,6 +31,6 @@ export class AppTopBarComponent {
     logout() {
         localStorage.removeItem('auth_token');
         this.isUserLoggedIn = false;
-        this.router.navigate(['/']);
+        this.router.navigate(['/home']);
     }
 }

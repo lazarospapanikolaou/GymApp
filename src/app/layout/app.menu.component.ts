@@ -1,6 +1,7 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
+import { UserService } from '../service/user-service';
 
 @Component({
     selector: 'app-menu',
@@ -9,7 +10,10 @@ import { LayoutService } from './service/app.layout.service';
 export class AppMenuComponent implements OnInit {
     model: any[] = [];
 
-    constructor(public layoutService: LayoutService) {}
+    constructor(
+        public layoutService: LayoutService,
+        private userService: UserService
+    ) {}
 
     ngOnInit() {
         this.model = [
@@ -20,26 +24,31 @@ export class AppMenuComponent implements OnInit {
                         label: 'Dashboard',
                         icon: 'pi pi-fw pi-home',
                         routerLink: ['/'],
+                        roles: ['ROLE_ADMIN', 'ROLE_USER'],
                     },
                     {
                         label: 'Users',
                         icon: 'pi pi-fw pi-users',
                         routerLink: ['/users'],
+                        roles: ['ROLE_ADMIN', 'ROLE_USER'],
                     },
                     {
                         label: 'Programs',
                         icon: 'pi pi-fw pi-book',
                         routerLink: ['/programs'],
+                        roles: ['ROLE_ADMIN'],
                     },
                     {
                         label: 'Payments',
                         icon: 'pi pi-fw pi-dollar',
                         routerLink: ['/payments'],
+                        roles: ['ROLE_ADMIN'],
                     },
                     {
                         label: 'Settings',
                         icon: 'pi pi-fw pi-cog',
                         routerLink: ['/settings'],
+                        roles: ['ROLE_ADMIN', 'ROLE_USER'],
                     },
                 ],
             },
@@ -300,5 +309,26 @@ export class AppMenuComponent implements OnInit {
                 ],
             },
         ];
+
+        // Filter out menu items based on user roles
+        this.filterMenuItems();
+    }
+
+    filterMenuItems() {
+        // Get user role
+        this.userService.getRole().subscribe((role) => {
+            // Example: Remove menu items based on user roles
+            console.log(this.model[0].items);
+            console.log(role);
+            let newModels = [];
+            for (let model of this.model[0].items) {
+                console.log(model);
+                console.log(role);
+                if (model.roles.includes(role)) {
+                    newModels.push(model);
+                }
+            }
+            this.model[0].items = newModels;
+        });
     }
 }

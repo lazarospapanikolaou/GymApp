@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UsersDto } from '../dto/users.dto';
 import { Observable, of } from 'rxjs';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root',
@@ -34,7 +35,18 @@ export class UserService {
     ];
     constructor() {}
 
+    private getHeaders(): HttpHeaders {
+        const authToken = localStorage.getItem('auth_token');
+        return new HttpHeaders({
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${authToken}`,
+        });
+    }
+
     getUser(id: number): Observable<UsersDto> {
+        // How to use headers for needed requests as an example
+        //     const headers = this.getHeaders();
+        //     return this.http.get<any[]>(`${this.apiUrl}/products`, { headers });
         return of(this.users.find((user) => user.id == id));
     }
 
@@ -44,5 +56,10 @@ export class UserService {
             return of(false);
         }
         return of(true);
+    }
+
+    getRole(): Observable<string> {
+        const role = localStorage.getItem('ROLE');
+        return of('ROLE_ADMIN');
     }
 }

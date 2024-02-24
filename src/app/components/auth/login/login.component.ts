@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
+import { UserService } from 'src/app/service/user-service';
 
 @Component({
     selector: 'app-login',
@@ -26,8 +27,16 @@ export class LoginComponent {
     constructor(
         public layoutService: LayoutService,
         private messageService: MessageService,
-        private router: Router
-    ) {}
+        private router: Router,
+        private userService: UserService
+    ) {
+        this.userService.isUserLoggedIn().subscribe((res) => {
+            if (res) {
+                console.log('Login', res);
+                this.router.navigate(['/']);
+            }
+        });
+    }
 
     login() {
         if (this.email && this.password) {

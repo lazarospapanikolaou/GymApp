@@ -7,6 +7,7 @@ import { ProgramsAdminComponent } from './components/programs-admin/programs-adm
 import { PaymentsAdminComponent } from './components/payments-admin/payments-admin.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { UserComponent } from './components/user/user.component';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
     imports: [
@@ -15,19 +16,62 @@ import { UserComponent } from './components/user/user.component';
                 {
                     path: '',
                     component: AppLayoutComponent,
+                    canActivate: [AuthGuard],
+                    data: {
+                        roles: ['ROLE_ADMIN', 'ROLE_USER'],
+                    },
                     children: [
                         {
                             path: '',
+                            canActivate: [AuthGuard],
+                            data: {
+                                roles: ['ROLE_ADMIN', 'ROLE_USER'],
+                            },
                             loadChildren: () =>
                                 import(
                                     './components/dashboard/dashboard.module'
                                 ).then((m) => m.DashboardModule),
                         },
-                        { path: 'users', component: UsersAdminComponent },
-                        { path: 'programs', component: ProgramsAdminComponent },
-                        { path: 'payments', component: PaymentsAdminComponent },
-                        { path: 'settings', component: SettingsComponent },
-                        { path: 'users/user', component: UserComponent },
+                        {
+                            path: 'users',
+                            component: UsersAdminComponent,
+                            canActivate: [AuthGuard],
+                            data: {
+                                roles: ['ROLE_ADMIN', 'ROLE_USER'],
+                            },
+                        },
+                        {
+                            path: 'programs',
+                            component: ProgramsAdminComponent,
+                            canActivate: [AuthGuard],
+                            data: {
+                                roles: ['ROLE_ADMIN'],
+                            },
+                        },
+                        {
+                            path: 'payments',
+                            component: PaymentsAdminComponent,
+                            canActivate: [AuthGuard],
+                            data: {
+                                roles: ['ROLE_ADMIN'],
+                            },
+                        },
+                        {
+                            path: 'settings',
+                            component: SettingsComponent,
+                            canActivate: [AuthGuard],
+                            data: {
+                                roles: ['ROLE_ADMIN', 'ROLE_USER'],
+                            },
+                        },
+                        {
+                            path: 'users/user',
+                            component: UserComponent,
+                            canActivate: [AuthGuard],
+                            data: {
+                                roles: ['ROLE_ADMIN', 'ROLE_USER'],
+                            },
+                        },
                         {
                             path: 'uikit',
                             loadChildren: () =>
@@ -64,6 +108,13 @@ import { UserComponent } from './components/user/user.component';
                                 ),
                         },
                     ],
+                },
+                {
+                    path: 'home',
+                    loadChildren: () =>
+                        import('./components/landing/landing.module').then(
+                            (m) => m.LandingModule
+                        ),
                 },
                 {
                     path: 'auth',
