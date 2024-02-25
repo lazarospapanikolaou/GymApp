@@ -11,7 +11,13 @@ import { AvatarModule } from 'primeng/avatar';
 @Component({
     selector: 'app-users-admin',
     standalone: true,
-    imports: [CommonModule, TableModule, ButtonModule, InputTextModule, AvatarModule],
+    imports: [
+        CommonModule,
+        TableModule,
+        ButtonModule,
+        InputTextModule,
+        AvatarModule,
+    ],
     templateUrl: './users-admin.component.html',
     styleUrl: './users-admin.component.scss',
     providers: [UsersAdminService],
@@ -51,6 +57,6 @@ export class UsersAdminComponent implements OnInit {
         const queryParams = {
             id: user.id,
         };
-        this.router.navigate(['/users/user/'], { queryParams });
+        this.router.navigate(['pages/users/user/'], { queryParams });
     }
 }

@@ -15,6 +15,20 @@ import { AuthGuard } from './guards/auth.guard';
             [
                 {
                     path: '',
+                    loadChildren: () =>
+                        import('./components/landing/landing.module').then(
+                            (m) => m.LandingModule
+                        ),
+                },
+                {
+                    path: 'auth',
+                    loadChildren: () =>
+                        import('./components/auth/auth.module').then(
+                            (m) => m.AuthModule
+                        ),
+                },
+                {
+                    path: 'pages',
                     component: AppLayoutComponent,
                     canActivate: [AuthGuard],
                     data: {
@@ -72,6 +86,7 @@ import { AuthGuard } from './guards/auth.guard';
                                 roles: ['ROLE_ADMIN', 'ROLE_USER'],
                             },
                         },
+                        /* From here might be removed  */
                         {
                             path: 'uikit',
                             loadChildren: () =>
@@ -107,21 +122,8 @@ import { AuthGuard } from './guards/auth.guard';
                                     (m) => m.PagesModule
                                 ),
                         },
+                        /* Until here might be removed  */
                     ],
-                },
-                {
-                    path: 'home',
-                    loadChildren: () =>
-                        import('./components/landing/landing.module').then(
-                            (m) => m.LandingModule
-                        ),
-                },
-                {
-                    path: 'auth',
-                    loadChildren: () =>
-                        import('./components/auth/auth.module').then(
-                            (m) => m.AuthModule
-                        ),
                 },
                 {
                     path: 'landing',

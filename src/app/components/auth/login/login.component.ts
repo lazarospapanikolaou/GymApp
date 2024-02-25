@@ -33,7 +33,7 @@ export class LoginComponent {
         this.userService.isUserLoggedIn().subscribe((res) => {
             if (res) {
                 console.log('Login', res);
-                this.router.navigate(['/']);
+                this.router.navigate(['/pages']);
             }
         });
     }
@@ -41,7 +41,7 @@ export class LoginComponent {
     login() {
         if (this.email && this.password) {
             localStorage.setItem('auth_token', 'true');
-            this.router.navigate(['/']);
+            this.router.navigate(['/pages']);
         } else {
             this.show();
         }
