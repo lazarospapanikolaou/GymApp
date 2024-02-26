@@ -1,17 +1,18 @@
 <div class="pageHeader">
-    <div class="headerTitle">User Admin</div>
+    <div class="headerTitle">{{ pageTitle }}</div>
 </div>
 
 
 <p-tabView size="medium">
     <p-tabPanel (click)="changeView('user')" [ngClass]="{ active: showAdminUser == true}">
-        <p>Admin User</p>
+        {{ 'admin.user_details' | translate }}
     </p-tabPanel>
-    <p-tabPanel (click)="changeView('userProgramHistory')" [ngClass]="{ active: showProgramHistory == true}">
-        <p>Program History</p>
+    <p-tabPanel (click)="changeView('programHistory')" [ngClass]="{ active: showProgramHistory == true}">
+        <p>{{ 'admin.program_history' | translate }}</p>
     </p-tabPanel>
 </p-tabView>
 
 <div class="page-container">
     <app-user *ngIf="showAdminUser"></app-user>
+    <app-programs-history *ngIf="showProgramHistory"></app-programs-history>
 </div>
