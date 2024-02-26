@@ -52,7 +52,7 @@ import { AuthGuard } from './guards/auth.guard';
                         { path: 'payments', component: PaymentsAdminComponent },
                         { path: 'settings', component: SettingsComponent },
                         { path: 'users/user', component: UserComponent },
-                        { path: 'users/admin', component: AdminComponent },
+                        // { path: 'users/admin', component: AdminComponent },
 
                         {
                             path: 'users',
@@ -94,6 +94,15 @@ import { AuthGuard } from './guards/auth.guard';
                                 roles: ['ROLE_ADMIN', 'ROLE_USER'],
                             },
                         },
+                        {
+                            path: 'users/admin',
+                            component: AdminComponent,
+                            canActivate: [AuthGuard],
+                            data: {
+                                roles: ['ROLE_ADMIN', 'ROLE_USER'],
+                            },
+                        },
+                        
                         /* From here might be removed  */
                         {
                             path: 'uikit',

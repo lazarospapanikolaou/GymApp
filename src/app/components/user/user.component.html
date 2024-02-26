@@ -1,13 +1,12 @@
 <div class="grid">
     <div class="col-12">
         <div class="card">
-            <!-- <nb-spinner status="info" size="large" message="{{ 'global-tags.please-wait' | translate }}" *ngIf="!showAdminUser"></nb-spinner> -->
-            <p-progressSpinner ariaLabel="loading" *ngIf="!showAdminUser">
-                <ng-template pTemplate="content">
+            <!-- <p-progressSpinner ariaLabel="loading" *ngIf="!showAdminUser">
+                <ng-template pTemplate="emptymessage">
                     <div>{{ 'global-tags.please-wait' | translate }}</div>
                 </ng-template>
-            </p-progressSpinner>
-            <p-table dataKey="id" [columns]="cols" [value]="userDetail" scrollDirection="both" [scrollable]="true" scrollHeight="250px" styleClass="mt-3" responsiveLayout="scroll">
+            </p-progressSpinner> -->
+            <p-table dataKey="id" [columns]="cols" [value]="user" scrollDirection="both" [scrollable]="true" scrollHeight="250px" styleClass="mt-3" responsiveLayout="scroll">
                 <ng-template pTemplate="header">
                     <tr>
                         <th *ngFor="let col of cols">
@@ -15,13 +14,13 @@
                         </th>                
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-userDetail>
+                <ng-template pTemplate="body" let-user>
                     <tr>
-                        <td>{{ userDetail.firstName }}</td>
-                        <td>{{ userDetail.lastName }}</td>
-                        <td>{{ userDetail.email }}</td>
-                        <td>{{ userDetail.birthDate }}</td>
-                        <td>{{ userDetail.address }}</td>
+                        <td>{{ user.firstName }}</td>
+                        <td>{{ user.lastName }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.birthDate }}</td>
+                        <td>{{ user.address }}</td>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="emptymessage">

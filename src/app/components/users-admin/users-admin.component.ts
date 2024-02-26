@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { UsersAdminService } from 'src/app/service/users-admin.service';
 import { AvatarModule } from 'primeng/avatar';
+import { UserService } from 'src/app/service/user-service';
 
 @Component({
     selector: 'app-users-admin',
@@ -28,11 +29,13 @@ export class UsersAdminComponent implements OnInit {
     cols!: any[];
 
     constructor(
-        private users_admin_service: UsersAdminService,
+        // private users_admin_service: UsersAdminService,
+        private users_admin_service:  UserService,
         private router: Router
     ) {}
 
     ngOnInit(): void {
+        
         this.cols = [
             { field: 'userName', header: 'User Name' },
             { field: 'firstName', header: 'First Name' },
@@ -45,6 +48,7 @@ export class UsersAdminComponent implements OnInit {
             .subscribe((res: UsersDto[]) => {
                 this.users = res;
                 this.loading = false;
+                // console.log(this.users)
             });
     }
 
@@ -56,10 +60,11 @@ export class UsersAdminComponent implements OnInit {
         const queryParams = {
             id: user.id,
         };
-        // this.router.navigate(['/users/user/'], { queryParams });
-        this.router.navigate(['/users/admin'], { queryParams });
+        // ------- This is for details of the user with Tabs ------- 
+        this.router.navigate(['pages/users/admin'], { queryParams });
         
-        
+        // ------- This is for details of the user without Tabs ------- 
         // this.router.navigate(['pages/users/user/'], { queryParams });
     }
+    
 }

@@ -7,11 +7,13 @@ import { UsersDto } from 'src/app/dto/users.dto';
 import { UserDetailsService } from 'src/app/service/user-details.service';
 import { UserService } from 'src/app/service/user-service';
 import { LangChangeEvent, TranslateModule, TranslateService } from '@ngx-translate/core'; 
+import { ProgramsHistoryComponent } from '../programs-history/programs-history.component';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [TabViewModule, CommonModule, UserComponent, TranslateModule],
+  imports: [TabViewModule, CommonModule, UserComponent, TranslateModule, ProgramsHistoryComponent, ButtonModule],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss'
 })
@@ -20,6 +22,7 @@ export class AdminComponent {
   showProgramHistory: boolean = false;
   pageTitle: string = '';
   user: UsersDto;
+  activeTabIndex: number = 0;
 
   constructor(
     private user_service: UserService,
@@ -33,29 +36,28 @@ export class AdminComponent {
 }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      // Access the query parameters here
-      this.user_service.getUser(params['id']).subscribe((user) => {
-          this.user = user;
-          
-      });
-  });
-  this.changeView('user')
+    this.changeViewInternal('user');
   }
 
-  changeView(view: any) {
-    this.changeViewInternal(view)
+  changeView(index: number) {
+    if (index === 0) {
+      this.changeViewInternal('user');
+    } else if (index === 1) {
+      this.changeViewInternal('programHistory');
+    }
   }
 
   changeViewInternal(view: any) {
     this.showAdminUser = false;
     this.showProgramHistory = false;
 
-    if (view == 'user') {
+    if (view === 'user') {
       this.showAdminUser = true;
+      this.activeTabIndex = 0
       this.pageTitle = this.translateService.instant('admin.user_details');
-    } else if (view == 'programHistory') {
+    } else if (view === 'programHistory') {
       this.showProgramHistory = true;
+      this.activeTabIndex = 1;
       this.pageTitle = this.translateService.instant('admin.program_history')
     }
   }

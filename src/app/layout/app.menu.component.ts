@@ -318,12 +318,9 @@ export class AppMenuComponent implements OnInit {
         // Get user role
         this.userService.getRole().subscribe((role) => {
             // Example: Remove menu items based on user roles
-            console.log(this.model[0].items);
-            console.log(role);
+
             let newModels = [];
             for (let model of this.model[0].items) {
-                console.log(model);
-                console.log(role);
                 if (model.roles.includes(role)) {
                     newModels.push(model);
                 }

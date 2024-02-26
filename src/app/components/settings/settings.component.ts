@@ -38,7 +38,7 @@ export class SettingsComponent implements OnInit {
             : localStorage.getItem('theme') === 'dark'
             ? true
             : false; //read from db or localstorage
-        console.log(this.checkedDark);
+        
         this.selectedLanguage = this.languages.find(
             (lang) => lang.code == localStorage.getItem('lang')
         ) || {

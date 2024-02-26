@@ -5,4 +5,6 @@ export class UsersDto {
     lastName: string;
     email: string;
     image: string;
+    birthDate: string;
+    address: string
 }

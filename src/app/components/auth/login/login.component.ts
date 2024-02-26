@@ -32,7 +32,7 @@ export class LoginComponent {
     ) {
         this.userService.isUserLoggedIn().subscribe((res) => {
             if (res) {
-                console.log('Login', res);
+               
                 this.router.navigate(['/pages']);
             }
         });

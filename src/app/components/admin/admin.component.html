@@ -3,12 +3,16 @@
 </div>
 
 
-<p-tabView size="medium">
-    <p-tabPanel (click)="changeView('user')" [ngClass]="{ active: showAdminUser == true}">
-        {{ 'admin.user_details' | translate }}
+<p-tabView styleClass="tabview-custom" styleClass="tabview-custom" [(activeIndex)]="activeTabIndex" (onChange)="changeView($event.index)">
+    <p-tabPanel>
+        <ng-template pTemplate="Header for User Details">
+            {{ 'admin.user_details' | translate }}
+        </ng-template>
     </p-tabPanel>
-    <p-tabPanel (click)="changeView('programHistory')" [ngClass]="{ active: showProgramHistory == true}">
-        <p>{{ 'admin.program_history' | translate }}</p>
+    <p-tabPanel>
+        <ng-template pTemplate="Header for Program History">
+            {{ 'admin.program_history' | translate }}
+        </ng-template>
     </p-tabPanel>
 </p-tabView>
 
