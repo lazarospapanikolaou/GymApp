@@ -11,9 +11,10 @@ import { EventService } from './service/event.service';
 import { IconService } from './service/icon.service';
 import { NodeService } from './service/node.service';
 import { PhotoService } from './service/photo.service';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import { HttpClient } from '@angular/common/http';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -21,13 +22,17 @@ export function createTranslateLoader(http: HttpClient) {
 
 @NgModule({
     declarations: [AppComponent, NotfoundComponent],
-    imports: [AppRoutingModule, AppLayoutModule, TranslateModule.forRoot({
-        loader: {
-            provide: TranslateLoader,
-            useFactory: (createTranslateLoader),
-            deps: [HttpClient]
-        }
-    })],
+    imports: [
+        AppRoutingModule,
+        AppLayoutModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: createTranslateLoader,
+                deps: [HttpClient],
+            },
+        }),
+    ],
     providers: [
         { provide: LocationStrategy, useClass: PathLocationStrategy },
         CountryService,
@@ -37,6 +42,11 @@ export function createTranslateLoader(http: HttpClient) {
         NodeService,
         PhotoService,
         ProductService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true,
+        },
     ],
     bootstrap: [AppComponent],
 })

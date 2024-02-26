@@ -8,6 +8,7 @@ import { PaymentsAdminComponent } from './components/payments-admin/payments-adm
 import { SettingsComponent } from './components/settings/settings.component';
 import { UserComponent } from './components/user/user.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
     imports: [
@@ -15,10 +16,32 @@ import { AdminComponent } from './components/admin/admin.component';
             [
                 {
                     path: '',
+                    loadChildren: () =>
+                        import('./components/landing/landing.module').then(
+                            (m) => m.LandingModule
+                        ),
+                },
+                {
+                    path: 'auth',
+                    loadChildren: () =>
+                        import('./components/auth/auth.module').then(
+                            (m) => m.AuthModule
+                        ),
+                },
+                {
+                    path: 'pages',
                     component: AppLayoutComponent,
+                    canActivate: [AuthGuard],
+                    data: {
+                        roles: ['ROLE_ADMIN', 'ROLE_USER'],
+                    },
                     children: [
                         {
                             path: '',
+                            canActivate: [AuthGuard],
+                            data: {
+                                roles: ['ROLE_ADMIN', 'ROLE_USER'],
+                            },
                             loadChildren: () =>
                                 import(
                                     './components/dashboard/dashboard.module'
@@ -31,6 +54,47 @@ import { AdminComponent } from './components/admin/admin.component';
                         { path: 'users/user', component: UserComponent },
                         { path: 'users/admin', component: AdminComponent },
 
+                        {
+                            path: 'users',
+                            component: UsersAdminComponent,
+                            canActivate: [AuthGuard],
+                            data: {
+                                roles: ['ROLE_ADMIN', 'ROLE_USER'],
+                            },
+                        },
+                        {
+                            path: 'programs',
+                            component: ProgramsAdminComponent,
+                            canActivate: [AuthGuard],
+                            data: {
+                                roles: ['ROLE_ADMIN'],
+                            },
+                        },
+                        {
+                            path: 'payments',
+                            component: PaymentsAdminComponent,
+                            canActivate: [AuthGuard],
+                            data: {
+                                roles: ['ROLE_ADMIN'],
+                            },
+                        },
+                        {
+                            path: 'settings',
+                            component: SettingsComponent,
+                            canActivate: [AuthGuard],
+                            data: {
+                                roles: ['ROLE_ADMIN', 'ROLE_USER'],
+                            },
+                        },
+                        {
+                            path: 'users/user',
+                            component: UserComponent,
+                            canActivate: [AuthGuard],
+                            data: {
+                                roles: ['ROLE_ADMIN', 'ROLE_USER'],
+                            },
+                        },
+                        /* From here might be removed  */
                         {
                             path: 'uikit',
                             loadChildren: () =>
@@ -66,14 +130,8 @@ import { AdminComponent } from './components/admin/admin.component';
                                     (m) => m.PagesModule
                                 ),
                         },
+                        /* Until here might be removed  */
                     ],
-                },
-                {
-                    path: 'auth',
-                    loadChildren: () =>
-                        import('./components/auth/auth.module').then(
-                            (m) => m.AuthModule
-                        ),
                 },
                 {
                     path: 'landing',

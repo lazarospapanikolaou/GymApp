@@ -6,11 +6,18 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { UsersAdminService } from 'src/app/service/users-admin.service';
+import { AvatarModule } from 'primeng/avatar';
 
 @Component({
     selector: 'app-users-admin',
     standalone: true,
-    imports: [CommonModule, TableModule, ButtonModule, InputTextModule],
+    imports: [
+        CommonModule,
+        TableModule,
+        ButtonModule,
+        InputTextModule,
+        AvatarModule,
+    ],
     templateUrl: './users-admin.component.html',
     styleUrl: './users-admin.component.scss',
     providers: [UsersAdminService],
@@ -53,5 +60,6 @@ export class UsersAdminComponent implements OnInit {
         this.router.navigate(['/users/admin'], { queryParams });
         
         
+        // this.router.navigate(['pages/users/user/'], { queryParams });
     }
 }
