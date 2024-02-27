@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import { TabViewModule } from 'primeng/tabview';
 import { UserComponent } from 'src/app/components/user/user.component';
 import { UsersDto } from 'src/app/dto/users.dto';
-import { UserDetailsService } from 'src/app/service/user-details.service';
 import { UserService } from 'src/app/service/user-service';
 import { LangChangeEvent, TranslateModule, TranslateService } from '@ngx-translate/core'; 
 import { ProgramsHistoryComponent } from '../programs-history/programs-history.component';
@@ -27,7 +26,6 @@ export class AdminComponent {
   constructor(
     private user_service: UserService,
     private route: ActivatedRoute,
-    private user_details_service: UserDetailsService,
     private translateService: TranslateService
 ) {
   this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
