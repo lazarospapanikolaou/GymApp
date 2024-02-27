@@ -2,7 +2,6 @@
     <div class="headerTitle">{{ pageTitle }}</div>
 </div>
 
-
 <p-tabView styleClass="tabview-custom" [(activeIndex)]="activeTabIndex" (onChange)="changeView($event.index)">
     <p-tabPanel header="{{ 'admin.user_details' | translate }}"></p-tabPanel>
     <p-tabPanel header="{{ 'admin.program_history' | translate }}"></p-tabPanel>
