@@ -1,5 +1,5 @@
 <div class="card">
-    <p-table  datatkey="id" [value]="programsHistory" [columns]="cols" [scrollable]="true" scrollHeight="300px" [tableStyle]="{'min-width': '50rem'}">
+    <p-table datatkey="id" [value]="programsHistory" [columns]="cols" [scrollable]="true" scrollHeight="300px" [tableStyle]="{'min-width': '50rem'}">
         <ng-template p-template="header">
             <tr>
                 <th *ngFor="let col of cols">
@@ -16,10 +16,10 @@
                     {{entry?.exercise}}
                 </td>
                 <td>
-                    {{entry?.createdAt}}
+                    {{entry?.createdAt | date}}
                 </td>
                 <td>
-                    {{entry?.updatedAt}}
+                    {{entry?.updatedAt | date}}
                 </td>
                 <td>
                     {{entry?.comments}}

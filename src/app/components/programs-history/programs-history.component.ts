@@ -16,6 +16,7 @@ import { CommonModule } from '@angular/common';
 export class ProgramsHistoryComponent {
   programsHistory: ProgramsHistoryDto[] = []
   cols!: any[];
+  showProgramHistory: boolean = true;
 
   constructor(
     private programHistory_service: ProgramsHistoryService,
@@ -31,20 +32,21 @@ export class ProgramsHistoryComponent {
     
     this.cols = [
       { field: 'id', header: 'Id' },
-      { field: 'exercise', header: 'Exercise' },
-      { field: 'createdAt', header: 'Start Date' },
-      { field: 'updatedAt', header: 'Update Date'},
-      { field: 'comments', header: 'Comments'}
+      
+      // { field: 'entries.' + 'exercise', header: 'Exercise' },
+      // { field: 'entries[0].createdAt', header: 'Start Date' },
+      // { field: 'entries[0].updatedAt', header: 'Update Date'},
+      // { field: 'entries[0].comments', header: 'Comments'}
     ]
-
     this.route.queryParams.subscribe((params) => {
       const userId = params['id'];
       if(userId) {
           this.programHistory_service.getProgramHistory(userId).subscribe(
-              (programHistory) => {
-                  this.programsHistory = [programHistory];
-                  // this.showAdminUser = false;
-                  console.log(this.programsHistory);
+              (programsHistory) => {
+                  this.programsHistory = [programsHistory];
+                  this.showProgramHistory = false;
+                  console.log(this.programsHistory)
+                  // console.log(this.programsHistory[0].entries[0].exercise);
               },
               (error) => {
                   console.log('Error with the user:', error);
