@@ -32,11 +32,10 @@ export class ProgramsHistoryComponent {
     
     this.cols = [
       { field: 'id', header: 'Id' },
-      
-      // { field: 'entries.' + 'exercise', header: 'Exercise' },
-      // { field: 'entries[0].createdAt', header: 'Start Date' },
-      // { field: 'entries[0].updatedAt', header: 'Update Date'},
-      // { field: 'entries[0].comments', header: 'Comments'}
+      { field: 'entries[0].exercise', header: 'Exercise' },
+      { field: 'entries[0].createdAt', header: 'Start Date' },
+      { field: 'entries[0].updatedAt', header: 'Update Date'},
+      { field: 'entries[0].comments', header: 'Comments'}
     ]
     this.route.queryParams.subscribe((params) => {
       const userId = params['id'];
