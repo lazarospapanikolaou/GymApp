@@ -48,7 +48,7 @@ export class UsersAdminComponent implements OnInit {
             .subscribe((res: UsersDto[]) => {
                 this.users = res;
                 this.loading = false;
-                // console.log(this.users)
+                console.log(this.users)
             });
     }
 

@@ -190,6 +190,8 @@ export class ProgramsHistoryService {
         },
     ]
 
-
+    getProgramHistory(id: number): Observable<ProgramsHistoryDto> {
+        return of(this.programsHistory.find((programHistory) => programHistory.id == id));
+    }
 
 }
