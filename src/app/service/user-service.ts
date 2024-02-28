@@ -16,7 +16,7 @@ export class UserService {
             email: 'chrisbours@gmail.com',
             image: '',
             birthDate: '15/03/1999',
-            address: "atreidon 11"
+            address: 'atreidon 11',
         },
         {
             id: 2,
@@ -26,7 +26,7 @@ export class UserService {
             email: 'lazpap@gmail.com',
             image: '',
             birthDate: '15/03/1999',
-            address: "atreidon 11"
+            address: 'atreidon 11',
         },
         {
             id: 3,
@@ -36,7 +36,7 @@ export class UserService {
             email: 'kostastest@gmail.com',
             image: 'https://images.unsplash.com/photo-1676195470090-7c90bf539b3b?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             birthDate: '15/03/1999',
-            address: "atreidon 11"        
+            address: 'atreidon 11',
         },
         {
             id: 4,
@@ -46,7 +46,7 @@ export class UserService {
             email: 'ArisPapageorgiou@gmail.com',
             image: 'https://images.unsplash.com/photo-1676195470090-7c90bf539b3b?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             birthDate: '15/03/1999',
-            address: "atreidon 11"
+            address: 'atreidon 11',
         },
         {
             id: 5,
@@ -56,7 +56,7 @@ export class UserService {
             email: 'GeorgeXoto@gmail.com',
             image: 'https://images.unsplash.com/photo-1676195470090-7c90bf539b3b?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             birthDate: '15/03/1999',
-            address: "atreidon 11"
+            address: 'atreidon 11',
         },
         {
             id: 6,
@@ -66,7 +66,7 @@ export class UserService {
             email: 'thanoSpanos@gmail.com',
             image: 'https://images.unsplash.com/photo-1676195470090-7c90bf539b3b?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             birthDate: '15/03/1999',
-            address: "atreidon 11"
+            address: 'atreidon 11',
         },
     ];
     constructor() {}
@@ -84,7 +84,6 @@ export class UserService {
         //     const headers = this.getHeaders();
         //     return this.http.get<any[]>(`${this.apiUrl}/products`, { headers });
         return of(this.users.find((user) => user.id == id));
-    
     }
 
     isUserLoggedIn(): Observable<boolean> {

@@ -41,60 +41,103 @@
                     >
                 </div>
 
-                <div>
-                    <label
-                        for="email1"
-                        class="block text-900 text-xl font-medium mb-2"
-                        >Email</label
-                    >
-                    <input
-                        id="email1"
-                        type="text"
-                        [(ngModel)]="email"
-                        placeholder="Email address"
-                        pInputText
-                        class="w-full md:w-30rem mb-5"
-                        style="padding: 1rem"
-                    />
-
-                    <label
-                        for="password1"
-                        class="block text-900 font-medium text-xl mb-2"
-                        >Password</label
-                    >
-                    <p-password
-                        id="password1"
-                        [(ngModel)]="password"
-                        placeholder="Password"
-                        [toggleMask]="true"
-                        styleClass="mb-5"
-                        inputStyleClass="w-full p-3 md:w-30rem"
-                    ></p-password>
-
-                    <div
-                        class="flex align-items-center justify-content-between mb-5 gap-5"
-                    >
-                        <div class="flex align-items-center">
-                            <p-checkbox
-                                id="rememberme1"
-                                [binary]="true"
-                                styleClass="mr-2"
-                            ></p-checkbox>
-                            <label for="rememberme1">Remember me</label>
-                        </div>
-                        <a
-                            class="font-medium no-underline ml-2 text-right cursor-pointer"
-                            style="color: var(--primary-color)"
-                            >Forgot password?</a
+                <div class="flex-row flex-wrap justify-content-center gap-4">
+                    <div class="mb-5">
+                        <label
+                            for="email"
+                            class="block text-900 text-xl font-medium mb-2"
+                            >Email</label
                         >
+                        <input
+                            id="email"
+                            type="text"
+                            [(ngModel)]="email"
+                            [formControl]="emailFormControl"
+                            placeholder="Email address"
+                            pInputText
+                            class="w-full md:w-30rem mb-2"
+                            style="padding: 1rem"
+                        />
+                        <div
+                            *ngIf="
+                                emailFormControl.hasError('required') &&
+                                emailFormControl.touched
+                            "
+                            class="text-red-500"
+                        >
+                            Email is required
+                        </div>
+                        <div
+                            *ngIf="
+                                emailFormControl.hasError('email') &&
+                                emailFormControl.touched
+                            "
+                            class="text-red-500"
+                        >
+                            Invalid email address
+                        </div>
                     </div>
-                    <button
-                        pButton
-                        pRipple
-                        label="Sign In"
-                        class="w-full p-3 text-xl"
-                        (click)="login()"
-                    ></button>
+
+                    <div class="mb-5">
+                        <label
+                            for="password"
+                            class="block text-900 font-medium text-xl mb-2"
+                            >Password</label
+                        >
+                        <p-password
+                            id="password"
+                            [(ngModel)]="password"
+                            placeholder="Password"
+                            [toggleMask]="true"
+                            styleClass="mb-5"
+                            inputStyleClass="w-full md:w-30rem mb-2"
+                            [formControl]="passwordFormControl"
+                        ></p-password>
+                        <div
+                            *ngIf="
+                                passwordFormControl.hasError('required') &&
+                                passwordFormControl.touched
+                            "
+                            class="text-red-500"
+                        >
+                            Password is required
+                        </div>
+                        <div
+                            *ngIf="
+                                passwordFormControl.hasError('minlength') &&
+                                passwordFormControl.touched
+                            "
+                            class="text-red-500"
+                        >
+                            Password must be at least 8 characters long
+                        </div>
+                    </div>
+                    <div>
+                        <div
+                            class="flex align-items-center justify-content-between mb-5 gap-5"
+                        >
+                            <div class="flex align-items-center">
+                                <p-checkbox
+                                    id="rememberme1"
+                                    [binary]="true"
+                                    styleClass="mr-2"
+                                ></p-checkbox>
+                                <label for="rememberme1">Remember me</label>
+                            </div>
+                            <a
+                                class="font-medium no-underline ml-2 text-right cursor-pointer"
+                                style="color: var(--primary-color)"
+                                >Forgot password?</a
+                            >
+                        </div>
+                        <button
+                            pButton
+                            pRipple
+                            label="Sign In"
+                            class="w-full p-3 text-xl"
+                            (click)="login()"
+                        ></button>
+                    </div>
                 </div>
             </div>
         </div>
