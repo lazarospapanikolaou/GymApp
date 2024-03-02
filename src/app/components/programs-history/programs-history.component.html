@@ -1,6 +1,6 @@
 <div class="card">
-    <p-table datatkey="id" [value]="programsHistory" [columns]="cols" [scrollable]="true" scrollHeight="300px" [tableStyle]="{'min-width': '50rem'}">
-        <ng-template p-template="header">
+    <p-table datakey="id" [value]="programsHistory" [columns]="cols" [scrollable]="true" scrollHeight="300px" [tableStyle]="{'min-width': '50rem'}">
+        <ng-template pTemplate="header">
             <tr>
                 <th *ngFor="let col of cols">
                     {{ col.header }}
