@@ -1,0 +1,15 @@
+.formgrip {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.field {
+    flex: 1 0 21%;
+    margin: 5px;
+}
+
+.add-program {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
